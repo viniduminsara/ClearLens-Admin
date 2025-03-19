@@ -1,15 +1,37 @@
 import { useState } from "react";
+import {signinService} from "../services/apiServices.ts";
+import {TokenResponse} from "../interfaces/api.ts";
+import {useNavigate} from "react-router-dom";
+import {useToast} from "../context/ToastContext.tsx";
 
 const SignIn = () => {
     const [formData, setFormData] = useState({ username: "", password: "" });
+    const navigate = useNavigate();
+    const {showToast} = useToast();
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
     };
 
-    const handleSubmit = (e: React.FormEvent) => {
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-        console.log("Sign In Data:", formData);
+
+        if (formData.username && formData.password) {
+            const obj = {
+                username: formData.username,
+                password: formData.password,
+            }
+
+            const res = await signinService(obj);
+            if (res.success){
+                localStorage.setItem('accessToken', (res.body as TokenResponse).token)
+                navigate('/');
+            } else {
+                showToast({ type: "error", message: res.message as string });
+            }
+        } else {
+            showToast({ type: 'error', message: 'Please enter valid data.' });
+        }
     };
 
     return (

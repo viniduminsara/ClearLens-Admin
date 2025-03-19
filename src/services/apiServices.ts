@@ -1,5 +1,5 @@
 import * as ApiService from "./apiHandler.ts"
-import {ApiObject} from "../interfaces/api.ts";
+import {ApiObject, SignInObject} from "../interfaces/api.ts";
 
 export const getProductsService = async (currentPage: number, currentLimit: number) => {
     const apiObject: ApiObject = {}
@@ -42,5 +42,14 @@ export const deleteProductService = async (productId: string | undefined) => {
     apiObject.method = "DELETE"
     apiObject.authentication = false
     apiObject.endpoint = `products/${productId}`
+    return await ApiService.callApi(apiObject);
+}
+
+export const signinService = async (obj: SignInObject) => {
+    const apiObject: ApiObject = {}
+    apiObject.method = "POST"
+    apiObject.authentication = false
+    apiObject.endpoint = `users/signIn`
+    apiObject.body = obj
     return await ApiService.callApi(apiObject);
 }
