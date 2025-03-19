@@ -31,4 +31,16 @@ export const productTableColumns = [
         sortable: true,
         cell: (row: Product) => <span>{row.newPrice}</span>,
     },
+    {
+        name: 'Actions',
+        selector: (row: Product) => row.newPrice,
+        sortable: false,
+        cell: (row: Product) => (
+            <div className='flex gap-2'>
+                <Link to={`/product/${row._id}`} className='btn btn-primary btn-outline'>
+                    View
+                </Link>
+            </div>
+        ),
+    },
 ];
