@@ -4,7 +4,7 @@ import {HiOutlineMenuAlt2} from "react-icons/hi";
 const Header = () => {
 
     return (
-        <div className="navbar bg-base-100 shadow-sm lg:px-8 px-4">
+        <div className="navbar bg-base-100 shadow-md lg:px-8 px-4">
             <div className="flex-none">
                 <label htmlFor="my-drawer-2" className="btn btn-ghost mr-2 lg:hidden">
                     <HiOutlineMenuAlt2 size={24}/>

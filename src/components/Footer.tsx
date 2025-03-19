@@ -1,12 +1,12 @@
 const Footer = () => {
-
     return (
-        <footer className="footer footer-center  bg-neutral text-base-content p-4">
+        <footer className="footer flex flex-col items-center bg-neutral text-base-content p-4 text-center md:text-left">
             <aside>
-                <p>Copyright © {new Date().getFullYear()} - All right reserved by ClearLens</p>
+                <p className="text-xs md:text-base">Copyright © {new Date().getFullYear()} - All rights reserved by ClearLens</p>
             </aside>
         </footer>
-    )
-}
+    );
+};
 
 export default Footer;
+
