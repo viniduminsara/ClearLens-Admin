@@ -20,7 +20,7 @@ export const getProductDetailsService = async (productId: string | undefined) =>
 export const createNewProductService = async (obj: FormData) => {
     const apiObject: ApiObject = {}
     apiObject.method = "POST"
-    apiObject.authentication = false
+    apiObject.authentication = true
     apiObject.endpoint = `products`
     apiObject.multipart = true
     apiObject.body = obj
@@ -30,7 +30,7 @@ export const createNewProductService = async (obj: FormData) => {
 export const updateProductService = async (obj: FormData, productId: string) => {
     const apiObject: ApiObject = {}
     apiObject.method = "PATCH"
-    apiObject.authentication = false
+    apiObject.authentication = true
     apiObject.endpoint = `products/${productId}`
     apiObject.multipart = true
     apiObject.body = obj
@@ -40,7 +40,7 @@ export const updateProductService = async (obj: FormData, productId: string) => 
 export const deleteProductService = async (productId: string | undefined) => {
     const apiObject: ApiObject = {}
     apiObject.method = "DELETE"
-    apiObject.authentication = false
+    apiObject.authentication = true
     apiObject.endpoint = `products/${productId}`
     return await ApiService.callApi(apiObject);
 }

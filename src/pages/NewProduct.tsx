@@ -6,7 +6,6 @@ import { Product } from "../interfaces/user.ts";
 
 const NewProduct = () => {
     const [product, setProduct] = useState<Product>({
-        qty: 0,
         name: "",
         description: "",
         brand: "",
