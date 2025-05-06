@@ -47,7 +47,7 @@ const ProductDetails = () => {
 
     return (
         <div className='px-6 md:px-24'>
-            <div className="md:min-h-screen flex justify-center items-center sm:pt-3 relative">
+            <div className="min-h-screen flex justify-center items-center sm:pt-3 relative">
                 <main className="grid grid-rows-1 sm:grid-cols-2 gap-2 sm:gap-10 ">
                     <section className="relative p-7 bg-black/[0.075]  flex items-center justify-center rounded-lg">
                         <img

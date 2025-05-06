@@ -15,9 +15,25 @@ const Products = () => {
     const [currentPage, setCurrentPage] = useState(1);
     const [rowsPerPage, setRowsPerPage] = useState(5);
     const [totalRows, setTotalRows] = useState(0);
+    const [filters, setFilters] = useState({
+        sort: 'ASC',
+        gender: 'All',
+        categories: [] as string[],
+        minPrice: 0,
+        maxPrice: 10000
+    });
 
     const fetchProducts = async (page: number, limit: number) => {
-        const res = await getProductsService(page, limit);
+
+        const obj = {
+            sort: filters.sort || 'ASC',
+            gender: filters.gender || 'ALL',
+            categories: filters.categories || [],
+            minPrice: filters.minPrice || 0,
+            maxPrice: filters.maxPrice || 10000
+        }
+
+        const res = await getProductsService(page, limit, obj);
         if (res.success) {
             const { docs, totalDocs } = res.body as PaginatedProductResponse;
             setProducts(docs);
@@ -48,20 +64,24 @@ const Products = () => {
                     <FaPlus /> Add Product
                 </Link>
             </div>
-            <div className='p-4 shadow-lg rounded-xl'>
-                <DataTable
-                    pagination
-                    paginationServer
-                    paginationRowsPerPageOptions={[5, 10, 25]}
-                    columns={productTableColumns}
-                    data={products}
-                    paginationTotalRows={totalRows}
-                    paginationPerPage={rowsPerPage}
-                    onChangePage={handlePageChange}
-                    onChangeRowsPerPage={handleRowsPerPageChange}
-                    customStyles={customStyles}
-                />
-            </div>
+            {
+                products.length > 0 && (
+                    <div className='p-4 shadow-lg rounded-xl'>
+                        <DataTable
+                            pagination
+                            paginationServer
+                            paginationRowsPerPageOptions={[5, 10, 25]}
+                            columns={productTableColumns}
+                            data={products}
+                            paginationTotalRows={totalRows}
+                            paginationPerPage={rowsPerPage}
+                            onChangePage={handlePageChange}
+                            onChangeRowsPerPage={handleRowsPerPageChange}
+                            customStyles={customStyles}
+                        />
+                    </div>
+                )
+            }
         </div>
     );
 };

@@ -10,6 +10,7 @@ import ToastContainer from "./components/ToastContainer.tsx";
 import ProductDetails from "./pages/ProductDetails.tsx";
 import NewProduct from "./pages/NewProduct.tsx";
 import UpdateProduct from "./pages/UpdateProduct.tsx";
+import OrderDetails from "./pages/OrderDetails.tsx";
 
 function App() {
 
@@ -25,6 +26,7 @@ function App() {
                       <Route path='/product/:id/edit' element={<UpdateProduct/>}/>
                       <Route path='/new-product' element={<NewProduct/>}/>
                       <Route path='/orders' element={<Orders/>}/>
+                      <Route path='/order/:id' element={<OrderDetails/>}/>
                   </Route>
               </Routes>
           </Router>

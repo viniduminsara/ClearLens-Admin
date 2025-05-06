@@ -33,13 +33,20 @@ export interface Address {
 }
 
 export interface OrderItem {
-    product: Product;
+    _id: string,
+    name: string,
+    image: string,
+    price: number,
+    newPrice: number,
     qty: number;
 }
 
 export interface Order {
     _id?: string;
+    date: string;
     amount?: number;
     orderItems?: OrderItem[];
+    status?: string;
+    user?: UserObject;
     paymentStatus?: string;
 }

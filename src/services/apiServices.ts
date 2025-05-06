@@ -1,11 +1,12 @@
 import * as ApiService from "./apiHandler.ts"
-import {ApiObject, SignInObject} from "../interfaces/api.ts";
+import {ApiObject, FilterObject, SignInObject} from "../interfaces/api.ts";
 
-export const getProductsService = async (currentPage: number, currentLimit: number) => {
+export const getProductsService = async (currentPage: number, currentLimit: number, obj: FilterObject) => {
     const apiObject: ApiObject = {}
-    apiObject.method = "GET"
+    apiObject.method = "POST"
     apiObject.authentication = false
     apiObject.endpoint = `products?page=${currentPage}&limit=${currentLimit}`
+    apiObject.body = obj
     return await ApiService.callApi(apiObject);
 }
 
@@ -51,5 +52,29 @@ export const signinService = async (obj: SignInObject) => {
     apiObject.authentication = false
     apiObject.endpoint = `users/signIn`
     apiObject.body = obj
+    return await ApiService.callApi(apiObject);
+}
+
+export const getOrderService = async (page: number, limit: number) => {
+    const apiObject: ApiObject = {}
+    apiObject.method = "GET"
+    apiObject.authentication = true
+    apiObject.endpoint = `orders?page=${page}&limit=${limit}`
+    return await ApiService.callApi(apiObject);
+}
+
+export const getOrderDetailsService = async (orderId: string | undefined) => {
+    const apiObject: ApiObject = {}
+    apiObject.method = "GET"
+    apiObject.authentication = true
+    apiObject.endpoint = `orders/${orderId}`
+    return await ApiService.callApi(apiObject);
+}
+
+export const updateOrderStatusService = async (status: string, orderId: string) => {
+    const apiObject: ApiObject = {}
+    apiObject.method = "PATCH"
+    apiObject.authentication = true
+    apiObject.endpoint = `orders/${orderId}/status?orderStatus=${status}`
     return await ApiService.callApi(apiObject);
 }

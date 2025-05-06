@@ -3,7 +3,7 @@ import {Address, Order, Product, UserObject} from "./user.ts";
 export interface ApiObject {
     endpoint?: string;
     method?: "GET" | "POST" | "PUT" | "PATCH" | "DELETE";
-    body?: Record<string, unknown> | SignInObject | SignUpObject | Address | Order | FormData;
+    body?: Record<string, unknown> | SignInObject | SignUpObject | Address | Order | FormData | FilterObject;
     authentication?: boolean;
     urlEncoded?: boolean;
     multipart?: boolean;
@@ -16,7 +16,7 @@ export interface ApiResponse {
     success: boolean;
     statusCode?: number;
     message?: string;
-    body: Product | Product[] | UserObject | TokenResponse | PaginatedProductResponse | Address[] | OrderWithHash
+    body: Product | Product[] | UserObject | TokenResponse | PaginatedProductResponse | PaginatedOrderResponse | Address[] | OrderWithHash | Order
 }
 
 export interface TokenResponse {
@@ -26,6 +26,12 @@ export interface TokenResponse {
 
 export interface PaginatedProductResponse {
     docs: Product[];
+    totalPages: number;
+    totalDocs: number;
+}
+
+export interface PaginatedOrderResponse {
+    docs: Order[];
     totalPages: number;
     totalDocs: number;
 }
@@ -44,4 +50,12 @@ export interface SignInObject {
 export interface OrderWithHash {
     order: Order;
     hash: string;
+}
+
+export interface FilterObject {
+    sort: string;
+    gender: string;
+    categories: string[];
+    minPrice: number;
+    maxPrice: number;
 }

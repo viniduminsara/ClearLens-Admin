@@ -3,8 +3,10 @@ import {Navigate, Outlet} from "react-router-dom";
 import SideBar from "./SideBar.tsx";
 import Footer from "./Footer.tsx";
 import {jwtDecode} from "jwt-decode";
+import {useToast} from "../context/ToastContext.tsx";
 
 const Layout = () => {
+    const { showToast } = useToast();
 
     const accessToken = localStorage.getItem("accessToken");
 
@@ -14,7 +16,8 @@ const Layout = () => {
             const currentTime = Date.now() / 1000;
 
             if (decodedToken.exp < currentTime || decodedToken.role !== "ADMIN") {
-                localStorage.removeItem("token");
+                localStorage.removeItem("accessToken");
+                showToast({type: "error", message: "Please sign in with admin account!"});
                 return <Navigate to="/signin" replace />;
             }
 

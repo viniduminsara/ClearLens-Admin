@@ -1,4 +1,4 @@
-import { Product } from "../interfaces/user.ts";
+import {Order, Product} from "../interfaces/user.ts";
 import {Link} from "react-router-dom";
 
 export const productTableColumns = [
@@ -38,6 +38,55 @@ export const productTableColumns = [
         cell: (row: Product) => (
             <div className='flex gap-2'>
                 <Link to={`/product/${row._id}`} className='btn btn-primary btn-outline'>
+                    View
+                </Link>
+            </div>
+        ),
+    },
+];
+
+export const orderTableColumns = [
+    {
+        name: 'Order ID',
+        selector: (row: Order) => row._id || '',
+        sortable: true,
+        cell: (row: Order) => <Link to={`/order/${row._id}`}>{row._id}</Link>,
+    },
+    {
+        name: 'Date',
+        selector: (row: Order) => row.date.split('T')[0] || '',
+        sortable: true,
+        cell: (row: Order) => <span>{row.date.split('T')[0]}</span>,
+    },
+    {
+        name: 'Amount',
+        selector: (row: Order) => row.amount || '',
+        sortable: true,
+        cell: (row: Order) => <span>{row.amount}</span>,
+    },
+    {
+        name: 'Status',
+        selector: (row: Order) => row.status || '',
+        sortable: true,
+        cell: (row: Order) => <span>{row.status}</span>,
+    },
+    {
+        name: 'Payment Status',
+        selector: (row: Order) => row.paymentStatus || '',
+        sortable: true,
+        cell: (row: Order) => (
+                <span className={`${row.paymentStatus === 'SUCCESS' ? 'text-success' : row.paymentStatus === 'FAILED' ? 'text-error' : 'text-warning'}`}>
+                    {row.paymentStatus}
+                </span>
+            )
+    },
+    {
+        name: 'Actions',
+        selector: (row: Order) => row._id || '',
+        sortable: false,
+        cell: (row: Order) => (
+            <div className='flex gap-2'>
+                <Link to={`/order/${row._id}`} className='btn btn-primary btn-outline btn-sm'>
                     View
                 </Link>
             </div>
