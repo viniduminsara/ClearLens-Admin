@@ -1,5 +1,5 @@
 import { FaPlus } from "react-icons/fa6";
-import { Product } from "../interfaces/user.ts";
+import {ResponseProduct} from "../interfaces/user.ts";
 import { useEffect, useState } from "react";
 import { getProductsService } from "../services/apiServices.ts";
 import { useToast } from "../context/ToastContext.tsx";
@@ -11,26 +11,26 @@ import {Link} from "react-router-dom";
 
 const Products = () => {
     const { showToast } = useToast();
-    const [products, setProducts] = useState<Product[]>([]);
+    const [products, setProducts] = useState<ResponseProduct[]>([]);
     const [currentPage, setCurrentPage] = useState(1);
     const [rowsPerPage, setRowsPerPage] = useState(5);
     const [totalRows, setTotalRows] = useState(0);
-    const [filters, setFilters] = useState({
-        sort: 'ASC',
-        gender: 'All',
-        categories: [] as string[],
-        minPrice: 0,
-        maxPrice: 10000
-    });
+    // const [filters, setFilters] = useState({
+    //     sort: 'ASC',
+    //     gender: 'All',
+    //     categories: [] as string[],
+    //     minPrice: 0,
+    //     maxPrice: 10000
+    // });
 
     const fetchProducts = async (page: number, limit: number) => {
 
         const obj = {
-            sort: filters.sort || 'ASC',
-            gender: filters.gender || 'ALL',
-            categories: filters.categories || [],
-            minPrice: filters.minPrice || 0,
-            maxPrice: filters.maxPrice || 10000
+            sort: 'ASC',
+            gender: 'ALL',
+            categories: [],
+            minPrice: 0,
+            maxPrice: 0
         }
 
         const res = await getProductsService(page, limit, obj);

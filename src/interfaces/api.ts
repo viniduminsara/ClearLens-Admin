@@ -25,7 +25,7 @@ export interface TokenResponse {
 }
 
 export interface PaginatedProductResponse {
-    docs: Product[];
+    docs: ResponseProduct[];
     totalPages: number;
     totalDocs: number;
 }

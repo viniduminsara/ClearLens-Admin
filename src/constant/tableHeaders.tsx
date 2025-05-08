@@ -1,41 +1,41 @@
-import {Order, Product, UserObject} from "../interfaces/user.ts";
+import {Order, ResponseProduct, UserObject} from "../interfaces/user.ts";
 import {Link} from "react-router-dom";
 
 export const productTableColumns = [
     {
         name: 'Product Name',
-        selector: (row: Product) => row.name,
+        selector: (row: ResponseProduct) => row.name,
         sortable: true,
-        cell: (row: Product) => <Link to={`/product/${row._id}`}>{row.name}</Link>,
+        cell: (row: ResponseProduct) => <Link to={`/product/${row._id}`}>{row.name}</Link>,
     },
     {
         name: 'Image',
-        selector: (row: Product) => row.image,
-        cell: (row: Product) => <img src={row.image} className="w-24 h-18" alt="image" />,
+        selector: (row: ResponseProduct) => row.image,
+        cell: (row: ResponseProduct) => <img src={row.image} className="w-24 h-18" alt="image" />,
     },
     {
         name: 'Stock',
-        selector: (row: Product) => row.quantity,
+        selector: (row: ResponseProduct) => row.quantity,
         sortable: true,
-        cell: (row: Product) => <span>{row.quantity}</span>,
+        cell: (row: ResponseProduct) => <span>{row.quantity}</span>,
     },
     {
         name: 'Price',
-        selector: (row: Product) => row.price,
+        selector: (row: ResponseProduct) => row.price,
         sortable: true,
-        cell: (row: Product) => <span>{row.price}</span>,
+        cell: (row: ResponseProduct) => <span>{row.price}</span>,
     },
     {
         name: 'New Price',
-        selector: (row: Product) => row.newPrice,
+        selector: (row: ResponseProduct) => row.newPrice,
         sortable: true,
-        cell: (row: Product) => <span>{row.newPrice}</span>,
+        cell: (row: ResponseProduct) => <span>{row.newPrice}</span>,
     },
     {
         name: 'Actions',
-        selector: (row: Product) => row.newPrice,
+        selector: (row: ResponseProduct) => row.newPrice,
         sortable: false,
-        cell: (row: Product) => (
+        cell: (row: ResponseProduct) => (
             <div className='flex gap-2'>
                 <Link to={`/product/${row._id}`} className='btn btn-primary btn-outline'>
                     View

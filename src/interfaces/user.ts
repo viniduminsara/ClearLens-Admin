@@ -23,7 +23,7 @@ export interface ResponseProduct {
     gender: string;
     weight: string;
     quantity: number;
-    image: string | null;
+    image: string;
     rating?: number;
     price: number;
     newPrice: number;

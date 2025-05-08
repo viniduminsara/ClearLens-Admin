@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import {Link, useNavigate, useParams} from "react-router-dom";
 import { useToast } from "../context/ToastContext.tsx";
 import {deleteProductService, getProductDetailsService} from "../services/apiServices.ts";
-import {Product} from "../interfaces/user.ts";
+import {ResponseProduct} from "../interfaces/user.ts";
 import {AiFillEdit} from "react-icons/ai";
 import {MdDelete} from "react-icons/md";
 
@@ -10,13 +10,13 @@ const ProductDetails = () => {
     const { id } = useParams();
     const { showToast } = useToast();
     const navigate = useNavigate();
-    const [product, setProduct] = useState<Product | null>(null);
+    const [product, setProduct] = useState<ResponseProduct | null>(null);
 
     useEffect(() => {
         const fetchProduct = async () => {
             const res = await getProductDetailsService(id as string);
             if (res.success) {
-                setProduct(res.body as Product);
+                setProduct(res.body as ResponseProduct);
             } else {
                 showToast({ type: "error", message: res.message as string });
             }
