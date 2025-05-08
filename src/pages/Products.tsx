@@ -27,10 +27,10 @@ const Products = () => {
 
         const obj = {
             sort: 'ASC',
-            gender: 'ALL',
+            gender: 'All',
             categories: [],
             minPrice: 0,
-            maxPrice: 0
+            maxPrice: 10000
         }
 
         const res = await getProductsService(page, limit, obj);
