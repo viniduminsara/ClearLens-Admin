@@ -20,6 +20,7 @@ export interface UserObject {
     email: string;
     cart: Product[];
     wishlist: Product[];
+    role?: string;
 }
 
 export interface Address {

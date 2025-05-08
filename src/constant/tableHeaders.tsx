@@ -1,4 +1,4 @@
-import {Order, Product} from "../interfaces/user.ts";
+import {Order, Product, UserObject} from "../interfaces/user.ts";
 import {Link} from "react-router-dom";
 
 export const productTableColumns = [
@@ -87,6 +87,51 @@ export const orderTableColumns = [
         cell: (row: Order) => (
             <div className='flex gap-2'>
                 <Link to={`/order/${row._id}`} className='btn btn-primary btn-outline btn-sm'>
+                    View
+                </Link>
+            </div>
+        ),
+    },
+];
+
+export const userTableColumns = [
+    {
+        name: 'User ID',
+        selector: (row: UserObject) => row.id || '',
+        sortable: true,
+        cell: (row: UserObject) => <Link to={`/user/${row.id}`}>{row.id}</Link>,
+    },
+    {
+        name: 'Username',
+        selector: (row: UserObject) => row.username || '',
+        sortable: true,
+        cell: (row: UserObject) => <span>{row.username}</span>,
+    },
+    {
+        name: 'Email',
+        selector: (row: UserObject) => row.email || '',
+        sortable: true,
+        cell: (row: UserObject) => <span>{row.email}</span>,
+    },
+    {
+        name: 'Role',
+        selector: (row: UserObject) => row.role || '',
+        sortable: true,
+        cell: (row: UserObject) => <span>{row.role}</span>,
+    },
+    {
+        name: 'Cart Item Count',
+        selector: (row: UserObject) => row.cart.length || 0,
+        sortable: true,
+        cell: (row: UserObject) => <span>{row.cart.length}</span>,
+    },
+    {
+        name: 'Actions',
+        selector: (row: UserObject) => row.id || '',
+        sortable: false,
+        cell: (row: UserObject) => (
+            <div className='flex gap-2'>
+                <Link to={`/user/${row.id}`} className='btn btn-primary btn-outline btn-sm'>
                     View
                 </Link>
             </div>

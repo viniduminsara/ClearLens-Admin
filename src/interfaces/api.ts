@@ -16,7 +16,7 @@ export interface ApiResponse {
     success: boolean;
     statusCode?: number;
     message?: string;
-    body: Product | Product[] | UserObject | TokenResponse | PaginatedProductResponse | PaginatedOrderResponse | Address[] | OrderWithHash | Order
+    body: Product | Product[] | UserObject | TokenResponse | PaginatedProductResponse | PaginatedOrderResponse | PaginatedUserResponse | Address[] | OrderWithHash | Order | DashboardData
 }
 
 export interface TokenResponse {
@@ -34,6 +34,24 @@ export interface PaginatedOrderResponse {
     docs: Order[];
     totalPages: number;
     totalDocs: number;
+}
+
+export interface PaginatedUserResponse {
+    docs: UserObject[];
+    totalPages: number;
+    totalDocs: number;
+}
+
+export interface ChartDataItem {
+    month: string;
+    sales: number;
+}
+
+export interface DashboardData {
+    salesCount: number;
+    ordersCount: number;
+    customersCount: number;
+    chartData: ChartDataItem[];
 }
 
 export interface SignUpObject {

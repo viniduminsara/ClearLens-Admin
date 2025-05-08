@@ -11,6 +11,7 @@ import ProductDetails from "./pages/ProductDetails.tsx";
 import NewProduct from "./pages/NewProduct.tsx";
 import UpdateProduct from "./pages/UpdateProduct.tsx";
 import OrderDetails from "./pages/OrderDetails.tsx";
+import Users from "./pages/Users.tsx";
 
 function App() {
 
@@ -27,6 +28,7 @@ function App() {
                       <Route path='/new-product' element={<NewProduct/>}/>
                       <Route path='/orders' element={<Orders/>}/>
                       <Route path='/order/:id' element={<OrderDetails/>}/>
+                      <Route path='/users' element={<Users/>}/>
                   </Route>
               </Routes>
           </Router>

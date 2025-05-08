@@ -2,6 +2,7 @@ import { Link, useLocation } from "react-router-dom";
 import { RiDashboardFill } from "react-icons/ri";
 import { BsStack } from "react-icons/bs";
 import {FaCartShopping} from "react-icons/fa6";
+import {IoMdPeople} from "react-icons/io";
 
 const SideBar = () => {
     const location = useLocation();
@@ -27,7 +28,7 @@ const SideBar = () => {
                     <Link
                         to="/products"
                         className={`flex items-center p-3 rounded-lg transition-all ${
-                            location.pathname === "/products"
+                            location.pathname.startsWith("/product")
                                 ? "text-primary"
                                 : ""
                         } focus:text-primary active:text-primary`}
@@ -40,13 +41,26 @@ const SideBar = () => {
                     <Link
                         to="/orders"
                         className={`flex items-center p-3 rounded-lg transition-all ${
-                            location.pathname === "/orders"
+                            location.pathname.startsWith("/order")
                                 ? "text-primary"
                                 : ""
                         } focus:text-primary active:text-primary`}
                     >
-                        <FaCartShopping  className="mr-3" size={24}/>
+                        <FaCartShopping className="mr-3" size={24}/>
                         Orders
+                    </Link>
+                </li>
+                <li>
+                    <Link
+                        to="/users"
+                        className={`flex items-center p-3 rounded-lg transition-all ${
+                            location.pathname.startsWith("/user")
+                                ? "text-primary"
+                                : ""
+                        } focus:text-primary active:text-primary`}
+                    >
+                        <IoMdPeople className="mr-3" size={24}/>
+                        Users
                     </Link>
                 </li>
             </ul>

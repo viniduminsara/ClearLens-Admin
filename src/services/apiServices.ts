@@ -78,3 +78,19 @@ export const updateOrderStatusService = async (status: string, orderId: string) 
     apiObject.endpoint = `orders/${orderId}/status?orderStatus=${status}`
     return await ApiService.callApi(apiObject);
 }
+
+export const getUserService = async (page: number, limit: number) => {
+    const apiObject: ApiObject = {}
+    apiObject.method = "GET"
+    apiObject.authentication = true
+    apiObject.endpoint = `users?page=${page}&limit=${limit}`
+    return await ApiService.callApi(apiObject);
+}
+
+export const getDashboardDataService = async () => {
+    const apiObject: ApiObject = {}
+    apiObject.method = "GET"
+    apiObject.authentication = true
+    apiObject.endpoint = `dashboard`
+    return await ApiService.callApi(apiObject);
+}
