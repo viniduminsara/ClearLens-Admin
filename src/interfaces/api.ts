@@ -1,4 +1,4 @@
-import {Address, Order, Product, UserObject} from "./user.ts";
+import {Address, Order, Product, ResponseProduct, UserObject} from "./user.ts";
 
 export interface ApiObject {
     endpoint?: string;
@@ -16,7 +16,7 @@ export interface ApiResponse {
     success: boolean;
     statusCode?: number;
     message?: string;
-    body: Product | Product[] | UserObject | TokenResponse | PaginatedProductResponse | PaginatedOrderResponse | PaginatedUserResponse | Address[] | OrderWithHash | Order | DashboardData
+    body: Product | Product[] | UserObject | TokenResponse | PaginatedProductResponse | PaginatedOrderResponse | PaginatedUserResponse | Address[] | OrderWithHash | Order | DashboardData | ResponseProduct
 }
 
 export interface TokenResponse {

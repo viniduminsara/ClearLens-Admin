@@ -1,12 +1,11 @@
 import {ChangeEvent, FormEvent, useEffect, useState} from "react";
-import {createNewProductService, getProductDetailsService, updateProductService} from "../services/apiServices.ts";
+import {getProductDetailsService, updateProductService} from "../services/apiServices.ts";
 import { useToast } from "../context/ToastContext.tsx";
 import {useNavigate, useParams} from "react-router-dom";
-import { Product } from "../interfaces/user.ts";
+import {Product, ResponseProduct} from "../interfaces/user.ts";
 
 const UpdateProduct = () => {
     const [product, setProduct] = useState<Product>({
-        qty: 0,
         name: "",
         description: "",
         brand: "",
@@ -31,7 +30,7 @@ const UpdateProduct = () => {
             const res = await getProductDetailsService(id as string);
             if (res.success) {
                 setProduct(res.body as Product);
-                setPreview((res.body as Product).image);
+                setPreview((res.body as ResponseProduct).image);
             } else {
                 showToast({ type: "error", message: res.message as string });
             }

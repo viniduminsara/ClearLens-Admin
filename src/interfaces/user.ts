@@ -1,5 +1,5 @@
 export interface Product {
-    _id: string;
+    _id?: string;
     name: string;
     description: string;
     brand: string;
@@ -7,11 +7,27 @@ export interface Product {
     gender: string;
     weight: string;
     quantity: number;
-    image: string;
-    rating: number;
+    image: File | null;
+    rating?: number;
     price: number;
     newPrice: number;
-    trending: boolean;
+    trending?: boolean;
+}
+
+export interface ResponseProduct {
+    _id?: string;
+    name: string;
+    description: string;
+    brand: string;
+    category: string;
+    gender: string;
+    weight: string;
+    quantity: number;
+    image: string | null;
+    rating?: number;
+    price: number;
+    newPrice: number;
+    trending?: boolean;
 }
 
 export interface UserObject {
