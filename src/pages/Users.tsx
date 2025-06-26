@@ -50,7 +50,7 @@ const Users = () => {
                         <DataTable
                             pagination
                             paginationServer
-                            paginationRowsPerPageOptions={[5, 10, 25]}
+                            paginationRowsPerPageOptions={[25, 50, 100]}
                             columns={userTableColumns}
                             data={users}
                             paginationTotalRows={totalRows}

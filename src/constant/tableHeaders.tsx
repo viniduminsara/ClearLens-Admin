@@ -1,5 +1,7 @@
 import {Order, ResponseProduct, UserObject} from "../interfaces/user.ts";
 import {Link} from "react-router-dom";
+import {FaGoogle} from "react-icons/fa";
+import {BiLogoGmail} from "react-icons/bi";
 
 export const productTableColumns = [
     {
@@ -11,7 +13,7 @@ export const productTableColumns = [
     {
         name: 'Image',
         selector: (row: ResponseProduct) => row.image,
-        cell: (row: ResponseProduct) => <img src={row.image} className="w-24 h-18" alt="image" />,
+        cell: (row: ResponseProduct) => <img src={row.image} className="w-24 h-18" alt="image"/>,
     },
     {
         name: 'Stock',
@@ -75,10 +77,11 @@ export const orderTableColumns = [
         selector: (row: Order) => row.paymentStatus || '',
         sortable: true,
         cell: (row: Order) => (
-                <span className={`${row.paymentStatus === 'SUCCESS' ? 'text-success' : row.paymentStatus === 'FAILED' ? 'text-error' : 'text-warning'}`}>
+            <span
+                className={`${row.paymentStatus === 'SUCCESS' ? 'text-success' : row.paymentStatus === 'FAILED' ? 'text-error' : 'text-warning'}`}>
                     {row.paymentStatus}
                 </span>
-            )
+        )
     },
     {
         name: 'Actions',
@@ -126,14 +129,14 @@ export const userTableColumns = [
         cell: (row: UserObject) => <span>{row.cart.length}</span>,
     },
     {
-        name: 'Actions',
-        selector: (row: UserObject) => row.id || '',
-        sortable: false,
+        name: 'Account Type',
+        selector: (row: UserObject) => row.accountType || 0,
+        sortable: true,
         cell: (row: UserObject) => (
-            <div className='flex gap-2'>
-                <Link to={`/user/${row.id}`} className='btn btn-primary btn-outline btn-sm'>
-                    View
-                </Link>
+            <div className='text-xl'>
+                <div className="tooltip" data-tip={row.accountType}>
+                    {row.accountType === 'GOOGLE' ? <FaGoogle/> : <BiLogoGmail/>}
+                </div>
             </div>
         ),
     },

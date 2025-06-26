@@ -37,6 +37,7 @@ export interface UserObject {
     cart: Product[];
     wishlist: Product[];
     role?: string;
+    accountType?: string;
 }
 
 export interface Address {

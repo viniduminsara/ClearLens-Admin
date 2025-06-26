@@ -17,7 +17,11 @@ const Layout = () => {
 
             if (decodedToken.exp < currentTime || decodedToken.role !== "ADMIN") {
                 localStorage.removeItem("accessToken");
-                showToast({type: "error", message: "Please sign in with admin account!"});
+                if (decodedToken.role !== "ADMIN") {
+                    showToast({type: "error", message: "Please sign in with admin account!"});
+                } else {
+                    showToast({type: "error", message: "Please sign in again!"});
+                }
                 return <Navigate to="/signin" replace />;
             }
 
