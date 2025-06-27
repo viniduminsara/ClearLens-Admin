@@ -39,7 +39,7 @@ const Dashboard = () => {
                 <DashboardCard>
                     <CardBody>
                         <CardTitle>Total Sales</CardTitle>
-                        <p className="text-3xl font-bold">Rs.{salesCount}</p>
+                        <p className="text-3xl font-bold">Rs.{salesCount.toLocaleString()}</p>
                     </CardBody>
                 </DashboardCard>
                 <DashboardCard>
@@ -64,7 +64,7 @@ const Dashboard = () => {
                         <XAxis dataKey="month" />
                         <YAxis />
                         <Tooltip />
-                        <Bar dataKey="sales" fill="#4CAF50" />
+                        <Bar dataKey="sales" fill="#7480FF" minPointSize={5}/>
                     </BarChart>
                 </ResponsiveContainer>
             </div>
