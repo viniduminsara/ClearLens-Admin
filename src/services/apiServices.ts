@@ -55,11 +55,11 @@ export const signinService = async (obj: SignInObject) => {
     return await ApiService.callApi(apiObject);
 }
 
-export const getOrderService = async (page: number, limit: number) => {
+export const getOrderService = async (page: number, limit: number, orderStatus: string, paymentStatus: string) => {
     const apiObject: ApiObject = {}
     apiObject.method = "GET"
     apiObject.authentication = true
-    apiObject.endpoint = `orders?page=${page}&limit=${limit}`
+    apiObject.endpoint = `orders?page=${page}&limit=${limit}&orderStatus=${orderStatus}&paymentStatus=${paymentStatus}`
     return await ApiService.callApi(apiObject);
 }
 
